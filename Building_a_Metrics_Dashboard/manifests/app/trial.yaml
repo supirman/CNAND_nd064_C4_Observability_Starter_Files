@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: trial
-        image: ghcr.io/thejaysmith/trial:v1
+        image: supirman/nd064-o11y-trial:latest
         ports:
         - containerPort: 8080
 ---
@@ -22,10 +22,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: trial-service
+  labels:
+    app: trial
 spec:
   selector:
     app: trial
   ports:
-    - port: 8080
+    - name: trial
+      port: 8888
       targetPort: 8080
   type: LoadBalancer
